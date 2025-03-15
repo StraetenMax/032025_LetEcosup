@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/templates/index.pug":
-/*!*********************************!*\
-  !*** ./src/templates/index.pug ***!
-  \*********************************/
+/***/ "./src/index.pug":
+/*!***********************!*\
+  !*** ./src/index.pug ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n// Module\nvar code = `\n<export>default __webpack_public_path__ + \"index.mjml\";</export>`;\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);\n\n//# sourceURL=webpack://032025_letecosup/./src/templates/index.pug?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n// Module\nvar code = `var pug = require(\"!../node_modules/pug-runtime/index.js\");\n\nfunction template(locals) {var pug_html = \"\", pug_mixins = {}, pug_interp;var pug_indent = [];\npug_html = pug_html + \"\\\\n\\\\u003Cmjml\\\\u003E\\\\n  \\\\u003Cmj-head\\\\u003E\\\\n    \\\\u003Cmj-title\\\\u003EMon Email MJML\\\\u003C\\\\u002Fmj-title\\\\u003E\\\\n  \\\\u003C\\\\u002Fmj-head\\\\u003E\\\\n  \\\\u003Cmj-body background-color=\\\\\"#210325\\\\\"\\\\u003E\\\\n    \\\\u003Cmj-section\\\\u003E\\\\n      \\\\u003Cmj-column\\\\u003E\\\\n        \\\\u003Cmj-text\\\\u003EBonjour, ceci est un email MJML généré depuis Pug !\\\\u003C\\\\u002Fmj-text\\\\u003E\\\\n        \\\\u003Cmj-text\\\\u003Eun nouvel essai\\\\u003C\\\\u002Fmj-text\\\\u003E\\\\n      \\\\u003C\\\\u002Fmj-column\\\\u003E\\\\n    \\\\u003C\\\\u002Fmj-section\\\\u003E\\\\n  \\\\u003C\\\\u002Fmj-body\\\\u003E\\\\n\\\\u003C\\\\u002Fmjml\\\\u003E\";;return pug_html;};\nmodule.exports = template;`;\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);\n\n//# sourceURL=webpack://032025_letecosup/./src/index.pug?");
 
 /***/ })
 
@@ -60,7 +60,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/templates/index.pug"](0, __webpack_exports__, __webpack_require__);
+/******/ 	__webpack_modules__["./src/index.pug"](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;
