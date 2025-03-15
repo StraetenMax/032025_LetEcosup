@@ -4,7 +4,7 @@ const { exec } = require("child_process");
 
 module.exports = {
     mode: "development",
-    entry: "./src/templates/email.html",
+    entry: "./src/templates/index.html",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
@@ -18,10 +18,10 @@ module.exports = {
             {
                 test: /\.mjml$/,
                 use: [
-                    {
+                   /* {
                         loader: "file-loader",
                         options: { name: "[name].html"},
-                    },
+                    },*/
                     {
                         loader: "mjml-loader",
                     },
@@ -29,14 +29,19 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: ["html-loader"],
+                exclude: [require.resolve('./src/templates/index.html')],
+                use: ['file-loader'],
             },
+            /*{
+                test: /\.html$/,
+                use: ["html-loader"],
+            },*/
         ],
     },
     plugins:[
         new HtmlWebpackPlugin({
-            template: "./src/templates/email.pug",
-            filename: "email.html",
+            template: "./src/templates/index.pug",
+            filename: "index.html",
         }),
     ],
     devServer: {
