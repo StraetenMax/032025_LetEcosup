@@ -3,9 +3,9 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          Hello John Doe,
+          Hello ,
           <br/>
-          Thank you for your recent purchase of Awesome Product.
+          Thank you for your recent purchase of .
         </mj-text>
       </mj-column>
     </mj-section>

@@ -5,26 +5,44 @@ import data from 'gulp-data';
 import mjml from 'gulp-mjml';
 import beautify from 'gulp-beautify';
 import rename from 'gulp-rename';
+import matter from 'gray-matter';
+import fm from 'front-matter';
 //import plumber from 'gulp-plumber';
 //import notify from 'gulp-notify';
 import { createRequire } from 'module';
+import pkg from'lodash';
+const {merge} = pkg;
+//import { merge } from 'lodash';
+import fs from 'fs';
+import path from 'path';
 
 const require = createRequire(import.meta.url);
 
 // Chemin des fichiers sources et de sortie
 const srcPath = 'src/';
 const distPath = 'dist/';
+const dataPath = 'data/';
 
-// Fonction pour obtenir les données à injecter dans les templates Nunjucks
-function getData() {
-  return require('./data/data.json');
-}
+// Fonction pour obtenir les données JSON
+const getJsonData = () => {
+  const userDataJson = require(path.join(process.cwd(), dataPath, 'user.json'));
+  const productDataJson = require(path.join(process.cwd(), dataPath, 'product.json'));
+  return merge({}, userDataJson, productDataJson);
+};
+
+// Fonction pour obtenir les données Markdown
+const getMarkdownData = () => {
+  const userDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'user.md'), 'utf-8'));
+  const productDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'product.md'), 'utf-8'));
+  const siteDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'site.md'), 'utf-8'));
+  return merge({}, userDataMd.attributes, productDataMd.attributes, siteDataMd.attributes);
+};
 
 // Tâche pour compiler Nunjucks en MJML
-function compileNunjucksToMjml() {
-  return gulp.src(`${srcPath}**/*.njk`)
+const compileNunjucksToMjml = () =>
+  gulp.src(`${srcPath}**/*.njk`)
     //.pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
-    .pipe(data(getData))
+    .pipe(data(() => ({jsonData: getJsonData(), markdownData: getMarkdownData()})))
     .pipe(nunjucksRender({
         path: ['src/templates', 'src/partials'],
         filters: {
@@ -38,7 +56,7 @@ function compileNunjucksToMjml() {
       }))
     .pipe(rename({ extname: '.mjml' }))
     .pipe(gulp.dest(`${srcPath}mjml/`));
-}
+
 
 // Tâche pour compiler MJML en HTML
 function compileMjmlToHtml() {
