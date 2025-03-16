@@ -2,10 +2,11 @@
   "name": "032025_letecosup",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
+  "type": "module",
   "scripts": {
-    "test": "webpack",
-    "start": "webpack serve --open"
+    "test": "gulp-watch",
+    "start": "gulp"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "gulp-data": "^1.3.1",
     "gulp-mjml": "^4.0.2",
     "gulp-nunjucks": "^6.0.0",
+    "gulp-nunjucks-render": "^2.2.3",
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0"
   }
