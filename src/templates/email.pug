@@ -1,0 +1,12 @@
+mjml
+  mj-body
+    mj-section
+      mj-column
+        mj-text
+            | Hello {{ jsonData.user.prenom}} {{ jsonData.user.nom}}
+        mj-text
+            | tel : {{jsonData.user.tel}}
+        mj-text 
+            | Thank you for your recent purchase of {{ jsonData.produit.name }}.
+        mj-text
+            | la légende {{ jsonData.produit.type}}

@@ -1,7 +1,7 @@
 {
-    "usine": {
-      "name": "Representation ",
-      "legend": "une belle histoire"
+    "produit": {
+      "name": "K2000",
+      "type": "boite"
     }
   }
   

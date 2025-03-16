@@ -1,0 +1,1 @@
+<mjml><mj-body><mj-section><mj-column><mj-text>Hello {{ jsonData.user.prenom}} {{ jsonData.user.nom}}</mj-text><mj-text>tel : {{jsonData.user.tel}}</mj-text><mj-text> Thank you for your recent purchase of {{ jsonData.produit.name }}.</mj-text><mj-text>la légende {{ jsonData.produit.type}}</mj-text></mj-column></mj-section></mj-body></mjml>

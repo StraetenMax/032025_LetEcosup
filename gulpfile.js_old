@@ -5,10 +5,14 @@ import data from 'gulp-data';
 import mjml from 'gulp-mjml';
 import beautify from 'gulp-beautify';
 import rename from 'gulp-rename';
+import matter from 'gray-matter';
 import fm from 'front-matter';
+//import plumber from 'gulp-plumber';
+//import notify from 'gulp-notify';
 import { createRequire } from 'module';
-import pkg from 'lodash';
-const { merge } = pkg;
+import pkg from'lodash';
+const {merge} = pkg;
+//import { merge } from 'lodash';
 import fs from 'fs';
 import path from 'path';
 
@@ -27,17 +31,12 @@ const getJsonData = () => {
 };
 
 // Fonction pour obtenir les données Markdown
-const getMarkdownData = () => {
-  try {
-    const userDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'user.md'), 'utf-8'));
-    const productDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'product.md'), 'utf-8'));
-    const siteDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'site.md'), 'utf-8'));
-    return merge({}, userDataMd.attributes, productDataMd.attributes, siteDataMd.attributes);
-  } catch (error) {
-    console.warn('Attention: Certains fichiers Markdown n\'ont pas été trouvés', error);
-    return {};
-  }
-};
+/*const getMarkdownData = () => {
+  const userDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'user.md'), 'utf-8'));
+  const productDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'product.md'), 'utf-8'));
+  const siteDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'site.md'), 'utf-8'));
+  return merge({}, userDataMd.attributes, productDataMd.attributes, siteDataMd.attributes);
+};*/
 
 // Tâche pour compiler Pug en Mjml
 const compilePugToMjml = () =>
@@ -49,23 +48,21 @@ const compilePugToMjml = () =>
 // Tâche pour compiler MJML en Html avec les données Nunjucks
 const compileMjmlToHtml = () =>
   gulp.src(`${srcPath}mjml/**/*.mjml`)
-    .pipe(mjml())
-    .pipe(data(() => {
-      const jsonData = getJsonData();
-      const markdownData = getMarkdownData();
-      return { jsonData, markdownData };
-    }))
+    //.pipe(data(() => ({jsonData: getJsonData(), markdownData: getMarkdownData()})))
+    .pipe(data(() => ({jsonData: getJsonData()})))
     .pipe(nunjucksRender({
-      path: ['src/templates', 'src/partials'],
-      filters: {
-        uppercase: (str) => str.toUpperCase(),
-      },
-      globals: {
-        siteName: 'Mon Site',
-      },
-    }))
+        path: ['src/templates', 'src/partials'],
+        filters: {
+          uppercase: (str) => str.toUpperCase(),
+        },
+        globals: {
+          siteName: 'Mon Site',
+        },
+      }))
+    .pipe(mjml())
     .pipe(beautify.html({ indent_size: 2 }))
     .pipe(gulp.dest(distPath));
+    //.pipe(gulp.dest(`${srcPath}templates/**/*.html`));
 
 // Tâche par défaut
 const build = gulp.series(compilePugToMjml, compileMjmlToHtml);
@@ -74,8 +71,6 @@ const build = gulp.series(compilePugToMjml, compileMjmlToHtml);
 const watchFiles = () => {
   gulp.watch(`${srcPath}templates/**/*.pug`, build);
   gulp.watch(`${srcPath}mjml/**/*.mjml`, compileMjmlToHtml);
-  gulp.watch(`${dataPath}**/*.json`, compileMjmlToHtml);
-  gulp.watch(`${dataPath}**/*.md`, compileMjmlToHtml);
 };
 
 // Exporter les tâches

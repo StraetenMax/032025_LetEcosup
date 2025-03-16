@@ -1,7 +1,8 @@
 {
     "user": {
-      "name": "Philippe Vandeerstraeten"
-    }
-    
-  }
+      "prenom": "Philippe",
+      "nom": "Vandeerstraeten",
+      "tel": "03.20.70.06.06"
+    }  
+}
   
