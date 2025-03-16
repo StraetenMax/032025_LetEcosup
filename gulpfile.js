@@ -43,6 +43,7 @@ const getMarkdownData = () => {
 const compilePugToMjml = () =>
   gulp.src(`${srcPath}templates/**/*.pug`)
     .pipe(pug())
+    //.pipe(beautify.html({ indent_size: 2 }))
     .pipe(rename({ extname: '.mjml' }))
     .pipe(gulp.dest(`${srcPath}mjml/`));
 
