@@ -3,9 +3,12 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          Hello {{ user.name }},
+          Hello {{ jsonData.user.name }},
           <br/>
-          Thank you for your recent purchase of {{ product.name }}.
+          Thank you for your recent purchase of {{ jsonData.usine.name }}.
+        <mj/text>
+        <mj-text>
+            la légende {{ jsonData.usine.legend}}
         </mj-text>
       </mj-column>
     </mj-section>

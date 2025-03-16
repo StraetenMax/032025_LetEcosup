@@ -1,6 +1,6 @@
 {
     "user": {
-      "name": "John Doe"
+      "name": "Philippe Vandeerstraeten"
     }
     
   }

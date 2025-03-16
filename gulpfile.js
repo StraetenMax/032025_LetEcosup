@@ -31,18 +31,19 @@ const getJsonData = () => {
 };
 
 // Fonction pour obtenir les données Markdown
-const getMarkdownData = () => {
+/*const getMarkdownData = () => {
   const userDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'user.md'), 'utf-8'));
   const productDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'product.md'), 'utf-8'));
   const siteDataMd = fm(fs.readFileSync(path.join(process.cwd(), dataPath, 'site.md'), 'utf-8'));
   return merge({}, userDataMd.attributes, productDataMd.attributes, siteDataMd.attributes);
-};
+};*/
 
 // Tâche pour compiler Nunjucks en MJML
 const compileNunjucksToMjml = () =>
   gulp.src(`${srcPath}**/*.njk`)
     //.pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
-    .pipe(data(() => ({jsonData: getJsonData(), markdownData: getMarkdownData()})))
+    //.pipe(data(() => ({jsonData: getJsonData(), markdownData: getMarkdownData()})))
+    .pipe(data(() => ({jsonData: getJsonData()})))
     .pipe(nunjucksRender({
         path: ['src/templates', 'src/partials'],
         filters: {

@@ -3,9 +3,12 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          Hello ,
+          Hello Philippe Vandeerstraeten,
           <br/>
-          Thank you for your recent purchase of .
+          Thank you for your recent purchase of Representation .
+        <mj/text>
+        <mj-text>
+            la légende une belle histoire
         </mj-text>
       </mj-column>
     </mj-section>
